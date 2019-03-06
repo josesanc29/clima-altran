@@ -29,5 +29,12 @@ export class AlertasService {
       type: 'info'
     })
   }
+  mensajeWarningForma() {
+    swal({
+      title: 'Cuidado!',
+      text: 'Debes elegir una ciudad y un pais',
+      type: 'info'
+    })
+  }
 
 }

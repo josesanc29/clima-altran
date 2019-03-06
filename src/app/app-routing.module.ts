@@ -5,10 +5,10 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 
 
 const routes: Routes = [
-  { path: 'historico' , component: HistoricoComponent , data: { titulo: 'Historico' }},
   { path: 'buscar', component: BuscadorComponent },
   { path: 'buscar/:texto', component: BuscadorComponent },
-  { path: '**', redirectTo: 'tiempo', pathMatch: 'full'}
+  { path: '', component: BuscadorComponent},
+  { path: '**', redirectTo: 'buscar', pathMatch: 'full'}
 ];
 
 @NgModule({
