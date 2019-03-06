@@ -26,7 +26,7 @@ export class WeatherService {
                .pipe( map ( (resp: any ) => {
                     this.weather = resp;
                     this.weatherBuscados.push(this.weather);
-                    this.ciudadesBuscadasStore();
+                    this.setCiudadesBuscadasStore();
                     return this.weather;
                }));
   }
@@ -35,7 +35,7 @@ export class WeatherService {
                .pipe( map ( (resp: any ) => {
                     this.weather = resp;
                     this.weatherBuscados.push(this.weather);
-                    this.ciudadesBuscadasStore();
+                    this.setCiudadesBuscadasStore();
                     return this.weather;
                }));
   }
@@ -51,18 +51,21 @@ export class WeatherService {
                }));
   }
 
-  ciudadesBuscadasStore() {
+  setCiudadesBuscadasStore() {
     localStorage.setItem('ciudades-buscadas', JSON.stringify( this.weatherBuscados )  );
   }
-  temperaturasStore() {
+  setTemperaturasStore() {
     localStorage.setItem ('historial-temperaturas' , JSON.stringify( this.historialTemperaturas ));
    }
-  getBusquedaStorage() {
-    JSON.parse(localStorage.getItem('busqueda'));
+  getTemperaturasStore() {
+    JSON.parse(localStorage.getItem('historial-temperaturas'));
+  }
+  getCiudadesBuscadasStore() {
+    JSON.parse(localStorage.getItem('ciudades-buscadas'));
   }
   resetearDatos() {
     localStorage.removeItem('ciudades-buscadas');
-    localStorage.removeItem('')
+    localStorage.removeItem('historial-temperaturas');
   }
 
 }

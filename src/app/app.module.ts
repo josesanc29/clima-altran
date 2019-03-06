@@ -12,9 +12,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { HistoricoComponent } from './components/historico/historico.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CiudadesComponent } from './pages/ciudades/ciudades.component';
-import { FiltrosComponent } from './pages/filtros/filtros.component';
+import { CiudadComponent } from './pages/ciudad/ciudad.component';
+
 
 
 @NgModule({
@@ -23,9 +22,7 @@ import { FiltrosComponent } from './pages/filtros/filtros.component';
     HeaderComponent,
     HistoricoComponent,
     BuscadorComponent,
-    DashboardComponent,
-    CiudadesComponent,
-    FiltrosComponent
+    CiudadComponent
   ],
   imports: [
     BrowserModule,

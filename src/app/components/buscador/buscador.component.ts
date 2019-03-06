@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WeatherService } from 'src/app/services/weather.service';
 import { Weather } from 'src/app/clases/weather';
 import { AlertasService } from 'src/app/services/alertas.service';
@@ -18,6 +18,7 @@ export class BuscadorComponent implements OnInit {
     public ws: WeatherService,
     public as: AlertasService,
     public route: ActivatedRoute,
+    public router: Router
     ) {
       this.route.params.subscribe( parametros =>{
         if ( parametros['texto'] ) {
