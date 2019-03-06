@@ -1,0 +1,22 @@
+<div class="container main-container">
+  <h4>Busca una de las ciudades por defecto del sistema.</h4>
+  <app-historico></app-historico>
+  <div class="row">
+    <div class="row animated fadeIn fast">
+      <div class="card-columns" *ngIf="ws.weatherBuscados.length > 0">
+        <div class="card" *ngFor="let item of ws.weatherBuscados"> 
+          <div class="card-block">
+            <img id="wicon" src="http://openweathermap.org/img/w/{{item.weather[0].icon}}.png">
+            <h4 class="card-title">Ciudad: {{item.name}}</h4>
+                <p class="card-text text-justify">Temperatura: {{item.main.temp}}</p>
+            <button type="button"
+                    [routerLink]=""
+                    class="btn btn-outline-primary btn-block">
+              Ficha Ciudad
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

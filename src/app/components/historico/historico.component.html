@@ -1,0 +1,24 @@
+<div class="container">
+<form [formGroup]="forma" (ngSubmit)="enviarFormulario()" >
+  <div class="form-group">
+      <label for="pais">Ciudades</label>
+      <select class="form-control" id="ciudad" formControlName="ciudadNombre">
+        <option *ngFor="let ciudad of ciudades" [value]="ciudad.nombre">{{ciudad.nombre}}</option>
+      </select>
+  </div>
+  <div class="form-group">
+      <label for="pais">Paises</label>
+      <select class="form-control" id="pais" formControlName="paisNombre">
+        <option *ngFor="let pais of paises" [value]="pais.id">{{pais.nombre}}</option>
+      </select>
+  </div>
+  <div class="form-group row">
+      <label class="col-form-label">&nbsp;</label>
+      <div class="col-md-8">
+        <button type="submit" class="btn btn-outline-primary">
+          Enviar
+        </button>
+      </div>
+  </div>
+</form>
+</div>
