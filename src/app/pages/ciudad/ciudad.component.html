@@ -1,3 +1,19 @@
-<p>
-  ciudad works!
-</p>
+<div class="container">
+<div class="card">
+    <div class="card-block">
+      <img id="wicon" src="http://openweathermap.org/img/w/{{ciudad.weather[0].icon}}.png">
+    </div>
+    <div class="card-header">
+      Ciudad: {{ciudad.name}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Descripcion : {{ciudad.weather[0].description}} </h5> 
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Climatologia: </h5>
+      <p class="card-text">Humedad: {{ciudad.main.humidity}}</p>
+      <p class="card-text">Presiones: {{ciudad.main.pressure}}</p>
+      <p class="card-text">Temperatura: {{ciudad.main.temp}}</p>
+    </div>
+  </div>
+</div>

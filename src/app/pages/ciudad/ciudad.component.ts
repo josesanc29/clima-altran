@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class CiudadComponent implements OnInit {
 
+  nombreCiudad = '';
   ciudad: Weather;
   ciudadesGuardadas: Weather [] = [];
 
@@ -19,14 +20,25 @@ export class CiudadComponent implements OnInit {
               private ws: WeatherService,
               private as: AlertasService,
               private route: ActivatedRoute,
-              ) {
-      this.ciudadesGuardadas = this.ws.weatherBuscados;
-      console.log(this.ciudadesGuardadas);
-      this.route.params.subscribe(parametros => {
-        console.log('obj ciudad' , parametros);
-      });
-  }
+              ) {}
 
   ngOnInit() {
+    this.ciudadesGuardadas = this.ws.weatherBuscados;
+    console.log(this.ciudadesGuardadas);
+    this.route.params.subscribe(parametros => {
+        console.log('obj ciudad' , parametros);
+        this.nombreCiudad = parametros['id'];
+        this.obtenerDatosCiudad();
+      });
+  }
+  obtenerDatosCiudad() {
+    // tslint:disable-next-line:prefer-for-of
+    for (let index = 0; index < this.ciudadesGuardadas.length; index++) {
+      if (this.nombreCiudad === this.ciudadesGuardadas[index].name ) {
+          this.ciudad = this.ciudadesGuardadas[index];
+          console.log('ciudad' , this.ciudad);
+          return this.ciudad;
+      }
+    }
   }
 }
