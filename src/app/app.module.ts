@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
-// import { ChartsModule } from 'ng2-charts';
+import { ChartsModule} from 'ng2-charts';
+
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HistoricoComponent } from './components/historico/historico.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { CiudadComponent } from './pages/ciudad/ciudad.component';
+import { GraficoComponent } from './components/grafico/grafico.component';
+import { TemperaturaComponent } from './pages/temperatura/temperatura.component';
 
 
 
@@ -22,7 +25,9 @@ import { CiudadComponent } from './pages/ciudad/ciudad.component';
     HeaderComponent,
     HistoricoComponent,
     BuscadorComponent,
-    CiudadComponent
+    CiudadComponent,
+    GraficoComponent,
+    TemperaturaComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +35,8 @@ import { CiudadComponent } from './pages/ciudad/ciudad.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    // ChartsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    ChartsModule
   ],
   providers: [ ],
   bootstrap: [AppComponent]

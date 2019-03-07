@@ -30,6 +30,9 @@ export class BuscadorComponent implements OnInit {
 
   ngOnInit() {
   }
+  resetDatos() {
+    this.ws.resetearDatosAplicacion();
+  }
   buscarCiudad() {
     if ( this.buscar.length === 0) {
       return;
@@ -41,9 +44,9 @@ export class BuscadorComponent implements OnInit {
           this.as.mensajeAddItem();
         },
         (error: any) => {
-          console.log(error);
           this.as.mensajeErrorBusqueda();
         });
 
   }
+
 }

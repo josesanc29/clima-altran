@@ -27,14 +27,21 @@ export class AlertasService {
       title: 'Prueba otra vez!',
       text: 'Debes introducir el nombre de una ciudad',
       type: 'info'
-    })
+    });
   }
   mensajeWarningForma() {
     swal({
       title: 'Cuidado!',
       text: 'Debes elegir una ciudad y un pais',
       type: 'info'
-    })
+    });
+  }
+  mensajeWarningDatos() {
+    swal({
+      title: 'Cuidado!',
+      text: 'Aun no se ha realizado la busqueda de ninguna ciudad',
+      type: 'info'
+    });
   }
 
 }

@@ -26,7 +26,6 @@ export class CiudadComponent implements OnInit {
     this.ciudadesGuardadas = this.ws.weatherBuscados;
     console.log(this.ciudadesGuardadas);
     this.route.params.subscribe(parametros => {
-        console.log('obj ciudad' , parametros);
         this.nombreCiudad = parametros['id'];
         this.obtenerDatosCiudad();
       });
@@ -36,7 +35,6 @@ export class CiudadComponent implements OnInit {
     for (let index = 0; index < this.ciudadesGuardadas.length; index++) {
       if (this.nombreCiudad === this.ciudadesGuardadas[index].name ) {
           this.ciudad = this.ciudadesGuardadas[index];
-          console.log('ciudad' , this.ciudad);
           return this.ciudad;
       }
     }

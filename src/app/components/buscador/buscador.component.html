@@ -4,6 +4,13 @@
   <p> 1) Utiliza el buscador de la cabecera para buscar <span>cualquier ciudad.</span></p>
   <p> 2) Utiliza los menus desplegables para buscar <span>una de las cuatro ciudades predefinidas por el sistema.</span></p>
   <app-historico></app-historico>
+  <br>
+  <button type="button"
+          (click)="resetDatos()"
+          class="btn btn-outline-primary btn-block">
+          Borrar Datos de Busquedas
+  </button>
+  <br>
   <div class="row">
     <div class="row animated fadeIn fast">
       <div class="card-columns" *ngIf="ws.weatherBuscados.length > 0">

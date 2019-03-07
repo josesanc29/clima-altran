@@ -13,13 +13,16 @@ export class WeatherService {
   private URL = environment.apiUrl;
   private apiKey = '&appid=08da4059951b1f8f59e55a9ca0478ae9';
   private weather: Weather;
-  private temperatura: number;
+  private weatherIds: Weather[];
   private historialTemperaturas: number [] = [];
   public weatherBuscados: Weather[] = [];
+  ciudadesGuardadas: any;
+  temperaturas: any;
 
 
   constructor( public http: HttpClient ,
-               public router: Router) {}
+               public router: Router) {
+  }
 
   searchByCity(cityName: string) {
     return this.http.get(this.URL + `${cityName}` + this.apiKey)
@@ -39,33 +42,36 @@ export class WeatherService {
                     return this.weather;
                }));
   }
-  getTemperatura(cityName: string) {
-    return this.http.get(this.URL + `${cityName}` + this.apiKey)
-               .pipe( map ( (resp: any ) => {
-                 console.log(resp);
-                    // this.weather = resp;
-                    // this.weatherBuscados.push(this.weather);
-                    // this.ciudadesBuscadasStore();
-                    // return this.weather;
 
-               }));
+  obtenerTemperatura(idsCiudades: number[]) {
+    return this.http.get(this.URL + `${idsCiudades}` + this.apiKey)
+                    .pipe( map ( ( resp: any ) => {
+                      console.log(resp);
+                      this.weatherIds = resp;
+                      console.log('obtener listado ids', this.weatherIds);
+                    }));
   }
-
   setCiudadesBuscadasStore() {
-    localStorage.setItem('ciudades-buscadas', JSON.stringify( this.weatherBuscados )  );
+    this.ciudadesGuardadas = localStorage.setItem('ciudades-buscadas', JSON.stringify( this.weatherBuscados )  );
   }
   setTemperaturasStore() {
-    localStorage.setItem ('historial-temperaturas' , JSON.stringify( this.historialTemperaturas ));
+    this.temperaturas  = localStorage.setItem ('historial-temperaturas' , JSON.stringify( this.historialTemperaturas ));
    }
   getTemperaturasStore() {
-    JSON.parse(localStorage.getItem('historial-temperaturas'));
+    return JSON.parse(localStorage.getItem('historial-temperaturas'));
   }
   getCiudadesBuscadasStore() {
-    JSON.parse(localStorage.getItem('ciudades-buscadas'));
+    return JSON.parse(localStorage.getItem('ciudades-buscadas'));
   }
-  resetearDatos() {
-    localStorage.removeItem('ciudades-buscadas');
-    localStorage.removeItem('historial-temperaturas');
+  resetearDatosAplicacion() {
+    if (localStorage.getItem('historial-temperaturas') || localStorage.getItem('ciudades-buscadas')) {
+      this.temperaturas = '';
+      this.ciudadesGuardadas = '';
+      this.historialTemperaturas = [];
+      this.weatherBuscados = [];
+    } else {
+      return false;
+    }
   }
 
 }

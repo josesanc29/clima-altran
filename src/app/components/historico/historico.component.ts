@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Paises } from '../../clases/paises';
 import { Ciudades } from '../../clases/ciudades';
 import { Weather } from 'src/app/clases/weather';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { WeatherService } from 'src/app/services/weather.service';
 import { AlertasService } from 'src/app/services/alertas.service';
 import { Router } from '@angular/router';
@@ -34,13 +34,14 @@ export class HistoricoComponent implements OnInit {
   nombrePais: string;
   nombreCiudad: string;
 
-  constructor( public formBuilder: FormBuilder,
+  constructor(
                private router: Router,
                public ws: WeatherService,
-               public as: AlertasService ) {
-    this.forma = this.formBuilder.group({
-      paisNombre: [this.paises , [Validators.required]],
-      ciudadNombre: [this.ciudades, [Validators.required]]
+               public as: AlertasService
+               ) {
+    this.forma = new FormGroup({
+      paisNombre: new FormControl( this.paises , Validators.required),
+      ciudadNombre: new FormControl(this.ciudades , Validators.required)
     });
   }
 
@@ -54,12 +55,10 @@ export class HistoricoComponent implements OnInit {
     }
     this.ws.searchByCityAndCountry(this.forma.value.ciudadNombre , this.forma.value.paisNombre)
             .subscribe( (data: any) => {
-                    console.log('envio formulario historico' , data);
                     this.weather = data;
                     this.as.mensajeAddItem();
                           },
                         ( error) => {
-                          console.log(error);
                           this.as.mensajeWarningForma();
                         });
   }
