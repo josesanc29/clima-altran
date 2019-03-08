@@ -14,9 +14,10 @@ import { WeatherList } from 'src/app/clases/weather-list';
 export class TemperaturaComponent implements OnInit {
 
   ciudadesStore: Weather[] = [];
-  datosList: Weather[] = [] ;
+  datosList: WeatherList[] = [] ;
   idsCiudades: number[] = [];
   idCiudad: number;
+  numCiudades: number;
 
   constructor(
               private ws: WeatherService,
@@ -24,10 +25,10 @@ export class TemperaturaComponent implements OnInit {
               ) {
         this.ciudadesStore = JSON.parse(localStorage.getItem('ciudades-buscadas'));
         this.getIdsCiudades();
-        this.obtenerDatosInterval(this.idsCiudades);
-        // setInterval(() => {
-        //  this.obtenerTemperaturasServicio();
-        // }, 180000);
+        this.obtenerDatos(this.idsCiudades);
+        setInterval(() => {
+          this.actualizameDatos();
+        }, 180000);
   }
 
   ngOnInit() {
@@ -38,20 +39,19 @@ export class TemperaturaComponent implements OnInit {
       if (this.ciudadesStore.length > 0) {
          this.idCiudad = this.ciudadesStore[i].id;
          this.idsCiudades.push(this.idCiudad);
-         console.log('ids ciudades number', this.idsCiudades)
       }
     }
     return this.idsCiudades;
   }
 
-  obtenerDatosInterval(ids: number[]) {
+  obtenerDatos(ids: number[]) {
     ids = this.idsCiudades;
-    console.log('obtenerDatosInterval - ids', ids);
     this.ws.getCiudadesByIds(ids).subscribe((data: any) => {
-      console.log('obtenerDatosInterval' , data);
       this.datosList = data;
     });
   }
-
-
+  actualizameDatos() {
+    this.obtenerDatos(this.idsCiudades);
+    console.log('Se han actualizado los datos');
+  }
 }

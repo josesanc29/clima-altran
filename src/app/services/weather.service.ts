@@ -46,9 +46,7 @@ export class WeatherService {
   getCiudadesByIds(idsCiudades: number[]): Observable<any> {
     return this.http.get(this.URL_IDS +`${idsCiudades}`+ this.apiKey)
                     .pipe( map ( ( resp: any ) => {
-                      console.log(resp);
                       this.weather = resp;
-                      console.log('obtener listado ids', this.weather);
                       return this.weather;
                     }));
   }

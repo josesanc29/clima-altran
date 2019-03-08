@@ -9,7 +9,7 @@ import { TemperaturaComponent } from './pages/temperatura/temperatura.component'
 const routes: Routes = [
   { path: 'buscar', component: BuscadorComponent },
   { path: 'buscar/:texto', component: BuscadorComponent },
-  { path: 'grafica' , component: TemperaturaComponent},
+  { path: 'historial' , component: TemperaturaComponent},
   { path: 'ciudad' , component: CiudadComponent},
   { path: 'ciudad/:id', component: CiudadComponent },
   { path: '', component: BuscadorComponent},
