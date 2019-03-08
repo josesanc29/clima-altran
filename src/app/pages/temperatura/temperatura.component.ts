@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Grafico } from '../../clases/grafico';
 import { WeatherService } from 'src/app/services/weather.service';
 import { AlertasService } from 'src/app/services/alertas.service';
 import { Weather } from 'src/app/clases/weather';
+import { WeatherList } from 'src/app/clases/weather-list';
+
+
 
 @Component({
   selector: 'app-temperatura',
@@ -11,37 +13,24 @@ import { Weather } from 'src/app/clases/weather';
 })
 export class TemperaturaComponent implements OnInit {
 
-  grafico: Grafico;
-  ciudadesStore: Weather[];
-  temperatura: number;
-  nombreCiudad: string;
-  idsCiudades: number[];
+  ciudadesStore: Weather[] = [];
+  datosList: Weather[] = [] ;
+  idsCiudades: number[] = [];
   idCiudad: number;
 
   constructor(
               private ws: WeatherService,
               private as: AlertasService
               ) {
-        if (this.ws.weatherBuscados.length === 0 ) {
-          this.as.mensajeWarningDatos();
-          return;
-        }
-        this.ciudadesStore = this.ws.weatherBuscados;
-        this.getCiudadesGrafica();
+        this.ciudadesStore = JSON.parse(localStorage.getItem('ciudades-buscadas'));
         this.getIdsCiudades();
+        this.obtenerDatosInterval(this.idsCiudades);
+        // setInterval(() => {
+        //  this.obtenerTemperaturasServicio();
+        // }, 180000);
   }
 
   ngOnInit() {
-  }
-
-  getCiudadesGrafica() {
-    for (const i in this.ciudadesStore) {
-      if (this.ciudadesStore.length > 0) {
-         this.nombreCiudad = this.ciudadesStore[i].name;
-         this.grafico.ciudades.push(this.nombreCiudad);
-      }
-    }
-    return this.grafico.ciudades;
   }
 
   getIdsCiudades() {
@@ -49,12 +38,20 @@ export class TemperaturaComponent implements OnInit {
       if (this.ciudadesStore.length > 0) {
          this.idCiudad = this.ciudadesStore[i].id;
          this.idsCiudades.push(this.idCiudad);
+         console.log('ids ciudades number', this.idsCiudades)
       }
     }
-    console.log('idsCiudades' , this.idsCiudades);
     return this.idsCiudades;
   }
 
+  obtenerDatosInterval(ids: number[]) {
+    ids = this.idsCiudades;
+    console.log('obtenerDatosInterval - ids', ids);
+    this.ws.getCiudadesByIds(ids).subscribe((data: any) => {
+      console.log('obtenerDatosInterval' , data);
+      this.datosList = data;
+    });
+  }
 
 
 }

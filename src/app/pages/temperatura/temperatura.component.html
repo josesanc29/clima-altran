@@ -1,11 +1,28 @@
-<div class="col-6">
-    <div class="card">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
         <div class="card-body">
             <h4 class="card-title"></h4>
-            <!-- <app-grafico-dona [chartLabels]="graficos.grafico1.labels" [chartData]="graficos.grafico1.data" chartType="doughnut"></app-grafico-dona> -->
-            <app-grafico [labels]="grafico.ciudades" [datasets]="" [chartType]=""></app-grafico>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Tiempo</th>
+                    <th scope="col">Temperatura</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let elem of datosList.list; let i = index ">
+                    <th scope="row">{{i}}</th>
+                    <td>{{elem.name}}</td>
+                    <td><img id="wicon" src="http://openweathermap.org/img/w/{{elem.weather[0].icon}}.png"></td>
+                    <td>{{elem.main.temp}}</td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
+      </div>
     </div>
 </div>
-
-<app-grafico></app-grafico>

@@ -14,7 +14,6 @@ import { HeaderComponent } from './shared/header/header.component';
 import { HistoricoComponent } from './components/historico/historico.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { CiudadComponent } from './pages/ciudad/ciudad.component';
-import { GraficoComponent } from './components/grafico/grafico.component';
 import { TemperaturaComponent } from './pages/temperatura/temperatura.component';
 
 
@@ -26,7 +25,6 @@ import { TemperaturaComponent } from './pages/temperatura/temperatura.component'
     HistoricoComponent,
     BuscadorComponent,
     CiudadComponent,
-    GraficoComponent,
     TemperaturaComponent
   ],
   imports: [
