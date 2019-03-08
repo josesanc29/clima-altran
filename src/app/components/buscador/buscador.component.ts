@@ -49,6 +49,7 @@ export class BuscadorComponent implements OnInit {
   resetData() {
     localStorage.removeItem('ciudades-buscadas');
     this.buscar = '';
+    this.ws.weatherBuscados = [];
   }
 
 }
